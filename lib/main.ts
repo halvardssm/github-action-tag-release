@@ -65,7 +65,7 @@ async function run() {
   }
 
   core.setOutput("release_created", release_created);
-  core.setOutput("releaseExists", release_exists);
+  core.setOutput("release_exists", release_exists);
 }
 
 run();
