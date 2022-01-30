@@ -2,17 +2,19 @@
   "name": "tag-release",
   "packageManager": "yarn@3.1.1",
   "version": "0.0.1",
-  "main": "dist/main.js",
+  "main": "dist/index.js",
+  "source": "lib/main.ts",
   "type": "module",
   "author": "Halvard Mørstad <halvard@simplyundoable.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf dist && ncc build lib/main.ts --license licenses.txt",
     "prettier": "prettier --write \"*.{yml,json,md}\" \"lib/*\""
   },
   "devDependencies": {
     "@types/node": "^17.0.13",
+    "@vercel/ncc": "^0.33.1",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
   },

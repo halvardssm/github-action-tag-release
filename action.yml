@@ -16,7 +16,7 @@ outputs:
     description: A boolean to indicate if the release with the current tag already exists
 runs:
   using: "node16"
-  main: "dist/main.js"
+  main: "dist/index.js"
 branding:
   color: "purple"
   icon: "tag"
