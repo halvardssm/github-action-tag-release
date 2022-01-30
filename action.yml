@@ -1,0 +1,22 @@
+name: "tag-release"
+description: "Github action to read package.json and github releases by tags, and creates a new release if release does not exist"
+author: "halvardssm"
+inputs:
+  path:
+    description: "path to the package.json file"
+    default: "./package.json"
+    required: false
+  token:
+    description: "The github token. Use ${{secrets.GITHUB_TOKEN}}"
+    required: true
+outputs:
+  release_created:
+    description: A boolean to indicate if a new release was created
+  release_exists:
+    description: A boolean to indicate if the release with the current tag already exists
+runs:
+  using: "node16"
+  main: "dist/index.js"
+branding:
+  color: "purple"
+  icon: "tag"
