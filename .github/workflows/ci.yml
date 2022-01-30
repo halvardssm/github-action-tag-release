@@ -15,5 +15,5 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
-          echo 'Exists ${{steps.release.outputs.release_exists}}''
+          echo 'Exists ${{steps.release.outputs.release_exists}}'
           echo 'Created ${{steps.release.outputs.release_created}}'
