@@ -8501,7 +8501,7 @@ async function run() {
         await createRelease(octokit, packageVersion);
     }
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("release_created", release_created);
-    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("releaseExists", release_exists);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("release_exists", release_exists);
 }
 run();
 
