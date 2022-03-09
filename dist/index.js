@@ -8477,13 +8477,14 @@ async function releaseExists(octokit, tagName) {
 async function createRelease(octokit, tagName) {
     const { repo, owner } = _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.repo;
     try {
-        await octokit.rest.repos.createRelease({
+        const res = await octokit.rest.repos.createRelease({
             owner,
             repo,
             tag_name: tagName,
         });
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.notice(`New release was made with tag '${tagName}'`);
         release_created = true;
+        return res.data;
     }
     catch (error) {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(`Action failed with error ${error}`);
@@ -8494,14 +8495,16 @@ async function run() {
     const token = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput("token");
     const octokit = _actions_github__WEBPACK_IMPORTED_MODULE_1__.getOctokit(token);
     const exists = await releaseExists(octokit, packageVersion);
+    let release_context = {};
     if (exists) {
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.notice(`Release with tag '${packageVersion}' already exists`);
     }
     else {
-        await createRelease(octokit, packageVersion);
+        release_context = (await createRelease(octokit, packageVersion)) || {};
     }
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("release_created", release_created);
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("release_exists", release_exists);
+    _actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput("release_context", release_context);
 }
 run();
 

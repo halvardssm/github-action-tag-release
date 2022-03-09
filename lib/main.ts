@@ -34,17 +34,18 @@ async function releaseExists(
 async function createRelease(
   octokit: ReturnType<typeof github.getOctokit>,
   tagName: string
-): Promise<void> {
+) {
   const { repo, owner } = github.context.repo;
 
   try {
-    await octokit.rest.repos.createRelease({
+    const res = await octokit.rest.repos.createRelease({
       owner,
       repo,
       tag_name: tagName,
     });
     core.notice(`New release was made with tag '${tagName}'`);
     release_created = true;
+    return res.data;
   } catch (error) {
     core.setFailed(`Action failed with error ${error}`);
   }
@@ -57,15 +58,17 @@ async function run() {
   const octokit = github.getOctokit(token);
 
   const exists = await releaseExists(octokit, packageVersion);
+  let release_context: Record<string, unknown> = {};
 
   if (exists) {
     core.notice(`Release with tag '${packageVersion}' already exists`);
   } else {
-    await createRelease(octokit, packageVersion);
+    release_context = (await createRelease(octokit, packageVersion)) || {};
   }
 
   core.setOutput("release_created", release_created);
   core.setOutput("release_exists", release_exists);
+  core.setOutput("release_context", release_context);
 }
 
 run();
