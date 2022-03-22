@@ -4,6 +4,8 @@ Create a new GitHub release if package.json version does not exist as a release.
 
 ## Usage
 
+The release will have the name as the package.json version, and use the workflow commit sha as the base for the release.
+
 Use the action inside your workflow yaml file like this:
 
 ```yml
@@ -16,4 +18,5 @@ Use the action inside your workflow yaml file like this:
 - run: |
     echo 'Release created: ${{steps.version.outputs.release_created}}' # boolean
     echo 'Release exists: ${{steps.version.outputs.release_exists}}' # boolean
+    echo 'Release context: ${{steps.version.outputs.release_context}}' # See response https://docs.github.com/en/rest/reference/releases#create-a-release
 ```

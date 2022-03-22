@@ -8481,6 +8481,8 @@ async function createRelease(octokit, tagName) {
             owner,
             repo,
             tag_name: tagName,
+            name: tagName,
+            target_commitish: _actions_github__WEBPACK_IMPORTED_MODULE_1__.context.sha,
         });
         _actions_core__WEBPACK_IMPORTED_MODULE_0__.notice(`New release was made with tag '${tagName}'`);
         release_created = true;
