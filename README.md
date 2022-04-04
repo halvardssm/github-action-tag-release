@@ -19,4 +19,6 @@ Use the action inside your workflow yaml file like this:
     echo 'Release created: ${{steps.version.outputs.release_created}}' # boolean
     echo 'Release exists: ${{steps.version.outputs.release_exists}}' # boolean
     echo 'Release context: ${{steps.version.outputs.release_context}}' # See response https://docs.github.com/en/rest/reference/releases#create-a-release
+- if: ${{steps.release.outputs.release_exists == 'true'}}
+  run: |
 ```
