@@ -18,3 +18,13 @@ jobs:
         run: |
           echo 'Exists ${{steps.release.outputs.release_exists}}'
           echo 'Created ${{steps.release.outputs.release_created}}'
+      - name: Test condition exists
+        if: steps.release.outputs.release_exists
+        run: |
+          echo '${{steps.release.outputs.release_exists == true}}'
+          echo '${{steps.release.outputs.release_exists == 'true'}}'
+      - name: Test condition created
+        if: steps.release.outputs.release_created
+        run: |
+          echo '${{steps.release.outputs.release_created == true}}'
+          echo '${{steps.release.outputs.release_created == 'true'}}'
