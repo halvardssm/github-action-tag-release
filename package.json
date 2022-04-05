@@ -2,7 +2,7 @@
   "packageManager": "yarn@3.1.1",
   "name": "tag-release",
   "description": "Github action to read package.json and github releases by tags, and creates a new release if release does not exist",
-  "version": "1.0.3",
+  "version": "0.0.0",
   "main": "dist/index.js",
   "source": "lib/main.ts",
   "type": "module",
