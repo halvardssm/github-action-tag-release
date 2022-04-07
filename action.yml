@@ -14,6 +14,10 @@ outputs:
     description: A boolean to indicate if a new release was created
   release_exists:
     description: A boolean to indicate if the release with the current tag already exists
+  release_tag:
+    description: If release exists, will contain the tag name, otherwise undefined
+  release_context:
+    description: The release context
 runs:
   using: "node16"
   main: "dist/index.js"

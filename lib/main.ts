@@ -14,7 +14,7 @@ function getPackageVersion() {
 
 async function releaseExists(
   octokit: ReturnType<typeof github.getOctokit>,
-  tagName: string,
+  tagName: string
 ): Promise<boolean> {
   const { repo, owner } = github.context.repo;
 
@@ -33,7 +33,7 @@ async function releaseExists(
 
 async function createRelease(
   octokit: ReturnType<typeof github.getOctokit>,
-  tagName: string,
+  tagName: string
 ) {
   const { repo, owner } = github.context.repo;
 
@@ -71,6 +71,7 @@ async function run() {
 
   core.setOutput("release_created", release_created);
   core.setOutput("release_exists", release_exists);
+  core.setOutput("release_tag", release_context.tag_name);
   core.setOutput("release_context", release_context);
 }
 
