@@ -47,7 +47,7 @@ async function createRelease(
     });
     core.notice(`New release was made with tag '${tagName}'`);
     release_created = true;
-    return res;
+    return res.data;
   } catch (error) {
     core.setFailed(`Action failed with error ${error}`);
   }
