@@ -45,7 +45,7 @@ async function createRelease(
       name: tagName,
       target_commitish: github.context.sha,
     });
-    console.log(res)
+    core.debug(JSON.stringify(res))
     core.notice(`New release was made with tag '${tagName}'`);
     release_created = true;
     return res.data;
