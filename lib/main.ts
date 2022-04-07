@@ -66,13 +66,11 @@ async function run() {
     core.notice(`Release with tag '${packageVersion}' already exists`);
   } else {
     release_context = (await createRelease(octokit, packageVersion)) || {};
-    core.notice(JSON.stringify(release_context));
   }
 
   core.setOutput("release_created", release_created);
   core.setOutput("release_exists", release_exists);
   core.setOutput("release_tag", release_context.tag_name);
-  core.setOutput("release_context", release_context);
 }
 
 run();

@@ -16,9 +16,9 @@ Use the action inside your workflow yaml file like this:
     token: ${{ secrets.GITHUB_TOKEN }}
     path: "./package.json" # optional, will use ./package.json by default
 - run: |
-    echo 'Release created: ${{steps.version.outputs.release_created}}' # boolean
-    echo 'Release exists: ${{steps.version.outputs.release_exists}}' # boolean
-    echo 'Release context: ${{steps.version.outputs.release_context}}' # See response https://docs.github.com/en/rest/reference/releases#create-a-release
+    echo 'Release created: ${{steps.version.outputs.release_created}}' # 'true' or 'false'
+    echo 'Release exists: ${{steps.version.outputs.release_exists}}' # 'true' or 'false'
+    echo 'Release tag: ${{steps.version.outputs.release_tag}}' # The tag from package.json
 - if: ${{steps.release.outputs.release_exists == 'true'}}
   run: |
 ```

@@ -19,7 +19,6 @@ jobs:
           echo 'Exists ${{steps.release.outputs.release_exists}}'
           echo 'Created ${{steps.release.outputs.release_created}}'
           echo 'Tag ${{steps.release.outputs.release_tag}}'
-          echo 'Release context: ${{steps.version.outputs.release_context}}'
       - name: Test condition exists
         if: steps.release.outputs.release_exists
         run: |
